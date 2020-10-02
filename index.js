@@ -1,9 +1,7 @@
-//npm init
-//install my dependencies - inquirer
-
 // Require all dependencies needed: inquirer fs
+const inquirer = require("inquirer");
+const fs = require("fs");
 
-//Create an array of questions
 
 //Write a README in a markdwon file as a template
 
@@ -16,18 +14,198 @@
 //write file using template generated from readme function
 
 // array of questions for user
-const questions = [
+const { questions } = require('./questions');
+const { licenses } = require('./licenses');
+let answers;
+inquirer
+    .prompt(questions)
+    .then(saveResult, errHandler)
+    .then(createText, errHandler)
+    .then(createImages, errHandler)
+    .then(createTechnologies, errHandler)
+    .then(continueText, errHandler)
+    .then(createOtherAuthors, errHandler)
+    .then(finishText, errHandler)
+    .then(createLicense, errHandler)
+    .then(writeReadme,errHandler);
 
-];
-
-// function to write README file
-function writeToFile(fileName, data) {
+function saveResult(result) {
+    answers = result;
+    return result;
+}
+function errHandler(err) {
+    if (err) console.log(err);
 }
 
-// function to initialize program
-function init() {
+function createText(result) {
+    let text =
+        `# ${answers.projectTitle}
+## Description
+${answers.description}
 
+## Table of Contents
+
+`
+    return text;
 }
 
-// function call to initialize program
-init();
+async function createImages(text) {
+    let newText = "";
+    for (i = 0; i < answers.images; i++) {
+        await inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "What is the relative or absolute link to the image you want to add?",
+                    name: "link"
+                },
+                {
+                    type: "input",
+                    message: "Please enter a short description of the image.",
+                    name: "imageDesc"
+                }
+            ]).then(function (res) {
+                let imageText = `![image](${res.link})`;
+                imageText += "\r\n\r\n"
+                imageText += res.imageDesc;
+                imageText += "\r\n"
+
+                newText += imageText;
+            })
+
+    }
+
+    return (text + newText);
+}
+
+async function createTechnologies(text) {
+    let newText = "";
+    for (i = 0; i < answers.technologies; i++) {
+        await inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "What is the name of the technology used?",
+                    name: "techname"
+                }, {
+                    type: "input",
+                    message: "What is the relative or absolute link to attribute the technology?",
+                    name: "link"
+                }
+            ]).then(function (res) {
+                let tech = `[${res.techname}](${res.link})`;
+                tech += "\r\n\r\n"
+
+                newText += tech;
+            })
+
+    }
+
+    return (text + newText);
+}
+
+function continueText(text) {
+    var newText =
+        `## Installation
+${answers.installation}
+
+## Usage
+${answers.usage}
+    
+## Contributing
+${answers.contributing}`;
+    return text + newText;
+}
+
+async function createTest(text) {
+    let newText = "";
+    if (answers.tests) {
+
+        await inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "Please enter your tests in a block.",
+                    name: "testContents"
+                }
+            ]).then(function (res) {
+                let testText = res.testContents;
+                testText += "\r\n\r\n"
+
+                newText += testText;
+            });
+
+
+    }
+    return (text + newText);
+}
+
+async function createOtherAuthors(text) {
+    let newText = "";
+    for (i = 0; i < answers.otherAuthors; i++) {
+        await inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "What was a contributor's name?",
+                    name: "authorName"
+                },
+                {
+                    type: "input",
+                    message: "What was their github username??",
+                    name: "authorGithub"
+                }
+            ]).then(function (res) {
+                let author = `[${res.authorname}](https://github.com/${res.authorGithub})`;
+                author += "\r\n\r\n"
+
+                newText += author;
+            })
+
+    }
+
+    return (text + newText);
+}
+
+function finishText(text) {
+    newText =
+        `## Questions
+${answers.questionsGithub}
+${answers.questionsEmail}
+
+
+`
+    return text + newText;
+}
+
+function createLicense(text) {
+    let newText = `##License
+
+    `
+
+    if (answers.license === "MIT") {
+        newText += licenses.MIT;
+    } else if (answers.license === "GNU GPLv3") {
+        newText += licenses.GNU
+    } else {
+        inquirer
+            .prompt([
+                {
+                    type: "input",
+                    message: "Please enter the text of the license you wish to use",
+                    name: "licenseText"
+                }
+            ]).then(function (res) {
+                let uniqueLicense = res.licenseText;
+                uniqueLicense += "\r\n\r\n"
+
+                newText += uniqueLicense;
+            })
+    }
+
+    return text + newText;
+}
+
+function writeReadme (text) {
+    fs.writeFile("test.md",text,errHandler);
+}
