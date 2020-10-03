@@ -246,5 +246,5 @@ async function createLicense(text) {
 }
 
 function writeReadme(text) {
-    fs.writeFile("test.md", text, errHandler);
+    fs.writeFile("README.md", text, errHandler);
 }
