@@ -1,7 +1,7 @@
 const questions = [
     {
         type: "input",
-        message: "What is the title of your project?",
+        message: "What is the Github Repository title of your project? Please use dashes.",
         name: "projectTitle"
     },
     {
