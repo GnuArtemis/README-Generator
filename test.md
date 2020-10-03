@@ -1,61 +1,35 @@
-# Test
+# 0
 ## Description
-testing testing
+0
 
 ## Table of Contents
-1. [Description](##-Description)
-1. [Installation](##-Installation)
-1. [Usage](##-Usage)
-1. [Contributing](##-Contributing)
-1. [Tests](##-Tests)
-1. [Authors](##-Authors)
-1. [Questions](##-Questions)
-1. [License](##-License)
-
-## Visuals 
-
-![image](https://github.com/GnuArtemis/Music-Chord-Identifier)
-
-Test Image
-
-![image](https://github.com/GnuArtemis/Music-Chord-Identifier)
-
-Image Test
-
-## Technologies 
-
-[Inquirer](https://github.com/GnuArtemis/Music-Chord-Identifier)
-
-[FS](https://github.com/GnuArtemis/Music-Chord-Identifier)
+1. [Description](#-Description)
+1. [Installation](#Installation)
+1. [Usage](#Usage)
+1. [Contributing](#Contributing)
+1. [Questions](#Questions)
+1. [License](#License)
 
 ## Installation
-Need inquirer
+0
 
 ## Usage
-anything will do
+0
     
 ## Contributing
-Please submit a pull request
-
-## Tests
-
-Try it and see if it works!
-
-## Authors 
-
-[Caitlin](https://github.com/caitlinbou)
-
-[Mark Weber](https://github.com/mweber)
+0
 
 ## Questions
-gnuartemis
-annmguinee@gmail.com 
+0
+0 
 
-##License 
+## License 
+
+![GitHub](https://img.shields.io/github/license/0/0) 
 
 MIT License
 
-    Copyright (c)
+Copyright (c) 2020
     
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

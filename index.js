@@ -45,24 +45,23 @@ function createText(result) {
 ${answers.description}
 
 ## Table of Contents
-1. [Description](##-Description)`;
+1. [Description](#-Description)`;
 
 
-    if (answers.visuals > 0) text += `\r\n1. [Visuals](##-Visuals)`;
-
-    text +=
-        `\r\n1. [Installation](##-Installation)
-1. [Usage](##-Usage)
-1. [Contributing](##-Contributing)`;
-
-
-    if (answers.tests) text += `\r\n1. [Tests](##-Tests)\r\n`;
-    if (answers.otherAuthors > 0) text += `1. [Authors](##-Authors)\r\n`;
+    if (answers.visuals > 0) text += `\r\n1. [Visuals](#Visuals)`;
 
     text +=
-        `1. [Questions](##-Questions)
-1. [License](##-License)\r\n\r\n`
+        `\r\n1. [Installation](#Installation)
+1. [Usage](#Usage)
+1. [Contributing](#Contributing)\r\n`;
 
+
+    if (answers.tests) text += `1. [Tests](#Tests)\r\n`;
+    if (answers.otherAuthors > 0) text += `1. [Authors](#Authors)\r\n`;
+
+    text +=
+        `1. [Questions](#Questions)
+1. [License](#License)\r\n\r\n`
     return text;
 }
 
@@ -126,7 +125,7 @@ async function createTechnologies(text) {
 }
 
 function continueText(text) {
-    var newText =
+    const newText =
         `## Installation
 ${answers.installation}
 
@@ -141,6 +140,7 @@ ${answers.contributing}`;
 }
 
 async function createTest(text) {
+
     let newText = "";
     if (answers.tests) {
         newText += `## Tests\r\n\r\n`
@@ -186,34 +186,36 @@ async function createOtherAuthors(text) {
 
         }
 
-        return (text + newText);
     }
+    return (text + newText);
 }
 
 function finishText(text) {
     newText =
         `## Questions
 ${answers.questionsGithub}
-${answers.questionsEmail} \r\n\r\n`
+${answers.questionsEmail} \r\n\r\n`;
+
     return text + newText;
 }
 
-function createLicense(text) {
-    let newText = `##License \r\n\r\n`
-    newText += `![GitHub](https://img.shields.io/github/license/${answer.questionsGithub}/${answers.projectTitle}) \r\n\r\n`;
+async function createLicense(text) {
+
+    let newText = `## License \r\n\r\n`
+    newText += `![GitHub](https://img.shields.io/github/license/${answers.questionsGithub}/${answers.projectTitle}) \r\n\r\n`;
 
     if (answers.license === "MIT") {
         newText += licenses.MIT;
     } else if (answers.license === "GNU GPLv3") {
         newText += licenses.GNU
-    } else {
-        inquirer
+    } /* else {
+        await inquirer
             .prompt([
                 {
                     type: "confirm",
                     message: "Do you already have a license file from Github?",
                     name: "preexistingLicense"
-                }
+                },
                 {
                     type: "input",
                     when: (res) => !res.preexistingLicense,
@@ -224,7 +226,10 @@ function createLicense(text) {
                 if (res.preexistingLicense) {
                     fs.readFile('LICENSE', "utf8", function (err, data) {
                         if (err) errHandler(err);
-                        else newText += data;
+                        else {
+                            newText += data;
+                            return (text + newText)
+                        }
                     })
                 } else {
 
@@ -232,11 +237,11 @@ function createLicense(text) {
                     uniqueLicense += "\r\n\r\n"
 
                     newText += uniqueLicense;
+                    return (text + newText);
                 }
             })
-    }
-
-
+    }*/
+    0
     return text + newText;
 }
 

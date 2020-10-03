@@ -51,17 +51,17 @@ const questions = [
         choices : [
             'MIT',
             'GNU GPLv3',
-            'More Options'
+            // 'More Options'
         ]
     },
     {
         type: "number",
-        message: "How many images do you want to add? Enter 0 if you do not want to add images",
+        message: "How many images do you want to add? Enter 0 if you do not want to add images.",
         name: "images"
     },
     {
         type: "number",
-        message: "How many other authors were there?",
+        message: "How many other authors contributed?",
         name: "otherAuthors"
     },
     
