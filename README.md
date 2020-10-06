@@ -12,13 +12,17 @@ User input is used to generate a professional-looking README. Depending on answe
 
 ## Visuals 
 
-![image](![image](https://user-images.githubusercontent.com/69055538/95161218-6bf99500-0757-11eb-995f-671ff1322b13.png))
+![image](https://user-images.githubusercontent.com/69055538/95161218-6bf99500-0757-11eb-995f-671ff1322b13.png)
 
 A display of the terminal, showing questions included with the application.
 
-![image](![image](https://user-images.githubusercontent.com/69055538/95161293-9c413380-0757-11eb-8ab6-cb7121fefc47.png))
+![image](https://user-images.githubusercontent.com/69055538/95161293-9c413380-0757-11eb-8ab6-cb7121fefc47.png)
 
 A display of the markdown file generated, pre-rendering.
+
+[YouTube Demonstration](https://youtu.be/4ML4BoRN8eU)
+
+The YouTube link above is a demonstration of the functionality, and expected user input.
 
 ## Technologies 
 
