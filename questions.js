@@ -26,7 +26,7 @@ const questions = [
     },
     {
         type: "input",
-        message: "What is the contribution policy for your project",
+        message: "What is the contribution policy for your project?",
         name: "contributing"
     },
     {

@@ -206,9 +206,9 @@ async function createLicense(text) {
     newText += `![GitHub](https://img.shields.io/github/license/${answers.questionsGithub}/${answers.projectTitle}) \r\n\r\n`;
 
     if (answers.license === "MIT") {
-        newText += licenses
+        newText += licenses.MIT
     } else if (answers.license === "GNU GPLv3") {
-        newText += licenses
+        newText += licenses.GNU
     }  else {
         await inquirer
             .prompt([
