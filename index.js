@@ -1,6 +1,7 @@
 // Require all dependencies needed: inquirer fs
 const inquirer = require("inquirer");
 const fs = require("fs");
+const path = require("path");
 
 
 //Write a README in a markdwon file as a template
@@ -193,22 +194,22 @@ async function createOtherAuthors(text) {
 function finishText(text) {
     newText =
         `## Questions
-${answers.questionsGithub}
+Please direct questions to:
+Github account ${answers.questionsGithub}
 ${answers.questionsEmail} \r\n\r\n`;
 
     return text + newText;
 }
 
 async function createLicense(text) {
-
     let newText = `## License \r\n\r\n`
     newText += `![GitHub](https://img.shields.io/github/license/${answers.questionsGithub}/${answers.projectTitle}) \r\n\r\n`;
 
     if (answers.license === "MIT") {
-        newText += licenses.MIT;
+        newText += licenses
     } else if (answers.license === "GNU GPLv3") {
-        newText += licenses.GNU
-    } /* else {
+        newText += licenses
+    }  else {
         await inquirer
             .prompt([
                 {
@@ -219,32 +220,38 @@ async function createLicense(text) {
                 {
                     type: "input",
                     when: (res) => !res.preexistingLicense,
+                    message: "Please enter the title of the license you wish to use",
+                    name: "licenseTitle"
+                },
+                {
+                    type: "input",
+                    when: (res) => !res.preexistingLicense,
                     message: "Please enter the text of the license you wish to use",
                     name: "licenseText"
                 }
             ]).then(function (res) {
+                console.log(res);
                 if (res.preexistingLicense) {
-                    fs.readFile('LICENSE', "utf8", function (err, data) {
-                        if (err) errHandler(err);
-                        else {
-                            newText += data;
-                            return (text + newText)
-                        }
-                    })
+                    const data = fs.readFileSync('LICENSE', "utf8");
+                    console.log(data);
+                    newText += data;
                 } else {
-
-                    let uniqueLicense = res.licenseText;
+                    let uniqueLicense = res.licenseTitle;
+                    uniqueLicense += "\r\n\r\n"
+                    uniqueLicense += res.licenseText;
                     uniqueLicense += "\r\n\r\n"
 
                     newText += uniqueLicense;
-                    return (text + newText);
                 }
             })
-    }*/
-    0
+    }
     return text + newText;
 }
 
 function writeReadme(text) {
-    fs.writeFile("README.md", text, errHandler);
+    console.log("We got to writing!");
+    console.log(text);
+    const OUTPUT_DIR = path.resolve(__dirname, "output");
+    const outputPath = path.join(OUTPUT_DIR, "README.md");
+    fs.writeFile(outputPath, text, errHandler);
 }

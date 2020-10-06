@@ -51,7 +51,7 @@ const questions = [
         choices : [
             'MIT',
             'GNU GPLv3',
-            // 'More Options'
+            'More Options'
         ]
     },
     {
