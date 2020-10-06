@@ -20,6 +20,10 @@ A display of the terminal, showing questions included with the application.
 
 A display of the markdown file generated, pre-rendering.
 
+[YouTube Demonstration](https://youtu.be/4ML4BoRN8eU)
+
+The YouTube link above is a demonstration of the functionality, and expected user input.
+
 ## Technologies 
 
 [inquirer](https://www.npmjs.com/package/inquirer)
