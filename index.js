@@ -40,6 +40,7 @@ function createText(result) {
     let text =
 `# ${answers.projectTitle}
 ## Description
+### Deployed link: ${answers.herokuLink}
 ${answers.description}
 
 ## Table of Contents

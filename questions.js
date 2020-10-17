@@ -64,8 +64,11 @@ const questions = [
         message: "How many other authors contributed?",
         name: "otherAuthors"
     },
-    
-
+    {
+        type: "input",
+        message: "What is the deployed link for your project?",
+        name: "herokuLink"
+    }
 ];
 
 module.exports = {
